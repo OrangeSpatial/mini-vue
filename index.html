@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+      .gn-6 {
+        color: #09c382;
+      }
+
+      .red {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script type="module">
+      import Vue from "./vue.js";
+      const { h, mount, createApp, ref } = Vue;
+      const AppComp = {
+        setup() {
+            const count = ref(0);
+          return {
+            count
+          };
+        },
+        render({ count }) {
+          return h(
+            "div",
+            {
+              class: "gn-6",
+              onClick: () => {
+                count.value++;
+              },
+            },
+            [
+                h("div", { class: "red" }, "Hello World"),
+                h("div", {}, String(count.value))
+            ]
+          );
+        },
+      };
+
+      createApp(AppComp, "#app");
+    </script>
+  </body>
+</html>
